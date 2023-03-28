@@ -6,27 +6,34 @@
 #include "GameFramework/Character.h"
 #include "AGCharacter.generated.h"
 
+
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class ACTIONGAME_API AAGCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AAGCharacter();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+protected:
+	virtual void BeginPlay() override;
+
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 	void Turn(float Value);
 	void LookUp(float Value);
+	void Aim();
+
+	UPROPERTY(VisibleAnywhere)
+		USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere)
+		UCameraComponent* ViewCamera;
+
+	bool IsAiming = false;
 };
