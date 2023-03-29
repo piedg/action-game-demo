@@ -49,7 +49,7 @@ void AAGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("LookUp", this, &AAGCharacter::LookUp);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AAGCharacter::Aim);
 }
 
 void AAGCharacter::MoveForward(float Value)
